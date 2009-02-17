@@ -1,11 +1,15 @@
-<h1>Photastic</h1>
+<header>Photastic</header>
 
 <% for photo in @photos -%>
-  <br /><%= image_tag photo.public_filename (:thumb) %><br />
-  
+  <br />
   <tr>
+    <td><%= image_tag photo.public_filename (:thumb) %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => photo %></td> |
     <td><%= link_to "Destroy", photo, :confirm => "Are you sure?", :method => :delete %></td>
   </tr>
-  
 <% end -%>
 
+  <br />
+    <br />
+
+<td><%= link_to albums_path, "albums" %></td>

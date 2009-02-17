@@ -13,10 +13,6 @@ class AlbumsController < ApplicationController
     @photo = Photo.new
   end
 
-  def edit
-    @album = Album.find(params[:id])
-  end
-
   def create
     @album = Album.new(params[:album])
   

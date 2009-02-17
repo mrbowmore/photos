@@ -27,14 +27,10 @@ class PhotosController < ApplicationController
   end
   
   def destroy
-    _find_album
-    @photo = @album.photos.find(params[:id])
+    @photo = Photo.find(params[:id])
     @photo.destroy
     flash[:notice] = "Photo went missing in action!"
     redirect_to albums_url
   end
 
-  def _find_album
-    @album = Album.find(params[:album_id])
-  end
 end

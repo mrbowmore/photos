@@ -1,4 +1,4 @@
-<h1>Listing albums<h1>
+<header>Listing albums</header>
   
 <table>
     <tr>
@@ -11,7 +11,6 @@
 
     <tr>
       <td><%= link_to "#{album.title}", album %></td>
-      <td><%= link_to "Edit", edit_album_path(album) %></td>
       <td><%= link_to "Destroy", album, :confirm => "Are you sure?", :method => :delete %></td>
     </tr>
     
