@@ -1,5 +1,8 @@
-
-<header><%= puts @photo.public_filename %></header>
-<div class="secondary-navigation">
-<%= image_tag @photo.public_filename %>
+<div>
+<header><%= @photo.filename %></header><br />
+  <%= image_tag @photo.public_filename %><br />
+  <tr>
+    <td><%= link_to "Add Photo", Photo.new %></td>
+    <td><%= link_to 'Back', photos_path %><td>
+  </tr>
 </div>

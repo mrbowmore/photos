@@ -1,0 +1,63 @@
+<style type="text/css">
+
+.mattblacktabs{
+width: 100%;
+overflow: hidden;
+border-bottom: 2px solid black; /*bottom horizontal line that runs beneath tabs*/
+}
+
+.mattblacktabs ul{
+margin: 0;
+padding: 0;
+padding-left: 10px; /*offset of tabs relative to browser left edge*/
+font: bold 12px Verdana;
+list-style-type: none;
+}
+
+.mattblacktabs li{
+display: inline;
+margin: 0;
+}
+
+.mattblacktabs li a{
+float: left;
+display: block;
+text-decoration: none;
+margin: 0;
+padding: 7px 8px; /*padding inside each tab*/
+border: 1px solid black;
+color: black;
+background: #414141; /*background of tabs (default state)*/
+}
+
+.mattblacktabs li a:visited{
+color: white;
+}
+
+.mattblacktabs li a:hover, .mattblacktabs li.selected a{
+background: black;
+filter:alpha(opacity=97);
+-moz-opacity:0.97;
+-khtml-opacity: 0.97;
+opacity: 0.97;
+}
+
+body{
+  background-image: url('/images/ribbon.gif');
+  background-image-repeat: repeat-x;
+  background-color: #414141;
+}
+
+#content {
+  float: left;
+  width: 780px;
+  margin: 50px 100px;
+  padding: 10px;
+  background-color: #fff;
+  border: solid 2px #051800;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  position: relative;
+}
+
+</style>

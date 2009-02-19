@@ -1,7 +1,7 @@
 <header><%= @album.title %></header><br /><br />
 <% for photo in @album.photos %>
   <tr>
-    <div class="thumbnail"><td><%= image_tag photo.public_filename (:thumb) %></td><br />
+    <div><td><%= image_tag photo.public_filename (:thumb) %></td><br />
     <td><%= link_to 'Show', photo, :action => 'show', :id => photo %></td> |
     <td><%= link_to "Destroy", photo, :confirm => "Are you sure?", :method => :delete %></td>
     <div>
