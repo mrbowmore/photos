@@ -13,12 +13,7 @@
   <body>
 
 
-    <% flash.each do |key, value| %>
-    <div id="flash" class="flash_<%= key %>" >
-      <span class="message"><%= value %></span>
-    </div>
-    <% end -%>
-    
+
     <div class="container">
     <div class="mattblacktabs">
     <ul>
@@ -29,12 +24,18 @@
     </div>
     <br />
       <br />
+      
+      <% flash.each do |key, value| %>
+        <div id="flash" class="flash_<%= key %>" >
+          <span class="message"><%= value %></span>
+        </div>
+      <% end -%>
+      
         <br />
         <div id="content">
         <%= yield :layout %>
         </div>
-
-    </div>
+      </div>
     </div>
   </body>
 <html>

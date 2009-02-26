@@ -1,5 +1,6 @@
 class Photo < ActiveRecord::Base
   belongs_to :album
+  belongs_to :user
   
   has_attachment :content_type => :image,
                  :storage => :file_system,
