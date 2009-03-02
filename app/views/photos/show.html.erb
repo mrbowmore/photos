@@ -2,7 +2,6 @@
 <header><%= @photo.filename %></header><br />
   <%= image_tag @photo.public_filename %><br />
   <tr>
-    <td><%= link_to "Add Photo", Photo.new %></td>
-    <td><%= link_to 'Back', photos_path %><td>
+    <td><%= link_to "Add Photo", album_photos_path(@photo.album) %></td>
   </tr>
 </div>

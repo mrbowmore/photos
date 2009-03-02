@@ -15,23 +15,24 @@
 
 
     <div class="container">
+    <div class="head">
     <div class="mattblacktabs">
     <ul>
-    <li><%= link_to "/photos", photos_path %></li>
+    <li><%# link_to "/photos", photos_path %></li>
     <li><%= link_to "/albums", albums_path %></li>
     <li><%= link_to "/users", users_path %></li>
     </ul>
     </div>
-    <br />
-      <br />
-      
+    <div class="userbar">
+    <%= render(:partial => "/users/user_bar" ) %>
+    </div>
+    </div>
+    <div style="clear:both"></div>  
       <% flash.each do |key, value| %>
         <div id="flash" class="flash_<%= key %>" >
           <span class="message"><%= value %></span>
         </div>
       <% end -%>
-      
-        <br />
         <div id="content">
         <%= yield :layout %>
         </div>

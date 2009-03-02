@@ -1,12 +1,13 @@
-<header><%= @album.title %></header><br /><br />
+<h2><%= @album.title %></h2>
+<table>
 <% for photo in @album.photos %>
   <tr>
-    <div><td><%= image_tag photo.public_filename (:thumb) %></td><br />
-    <td><%= link_to 'Show', photo, :action => 'show', :id => photo %></td> |
-    <td><%= link_to "Destroy", photo, :confirm => "Are you sure?", :method => :delete %></td>
-    <div>
+    <td><%= link_to image_tag(photo.public_filename(:thumb)), photo %></td><br />
+    <td><%= link_to "Destroy", photo, :confirm => "Are you sure?", :method => :delete if photo.has_access?(current_user)%></td>
   </tr>
-  <br />
-    <br />
-      <br />
+  
 <% end %>
+</table>
+ 
+<p><%= link_to "Add Photo", new_album_photo_path(@album) %></p>
+  

@@ -9,12 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090225095300) do
+ActiveRecord::Schema.define(:version => 20090302125529) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "photos", :force => true do |t|
@@ -42,11 +43,18 @@ ActiveRecord::Schema.define(:version => 20090225095300) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "hashed_password"
-    t.string   "salt"
+    t.string   "login",                     :limit => 40
+    t.string   "name",                      :limit => 100, :default => ""
+    t.string   "email",                     :limit => 100
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remember_token",            :limit => 40
+    t.datetime "remember_token_expires_at"
+    t.boolean  "admin",                                    :default => false
   end
+
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end

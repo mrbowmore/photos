@@ -1,52 +1,57 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  
-  has_many :albums
-  has_many :photos
-  
-  validates_presence_of     :name
-  validates_uniqueness_of   :name
-  
-  attr_accessor :password_confirmation
-  validates_confirmation_of :password
-  
-  validate :password_non_blank
-  
-  def password
-    @password
-  end
-  
-  def password=(pwd)
-    @password = pwd
-    return if pwd.blank?
-    create_new_salt
-    self.hashed_password = User.encrypted_password(self.password, self.salt)
-  end
-  
-  def self.authenticate(name, password)
-    user = self.find_by_name(name)
-    if user
-      expected_password = encrypted_password(password, user.salt)
-      if user.hashed_password != expected_password
-        user = nil
-      end
-    end
-    user
-  end
-  
-private
+  include Authentication
+  include Authentication::ByPassword
+  include Authentication::ByCookieToken
 
-  def password_non_blank
-    errors.add_to_base("Missing password") if hashed_password.blank?
+  validates_presence_of     :login
+  validates_length_of       :login,    :within => 3..40
+  validates_uniqueness_of   :login
+  validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
+
+  validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
+  validates_length_of       :name,     :maximum => 100
+
+  validates_presence_of     :email
+  validates_length_of       :email,    :within => 6..100 #r@a.wk
+  validates_uniqueness_of   :email
+  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
+
+  
+
+  # HACK HACK HACK -- how to do attr_accessible from here?
+  # prevents a user from submitting a crafted form that bypasses activation
+  # anything else you want your user to change should be added here.
+  attr_accessible :login, :email, :name, :password, :password_confirmation
+
+
+
+  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
+  #
+  # uff.  this is really an authorization, not authentication routine.  
+  # We really need a Dispatch Chain here or something.
+  # This will also let us return a human error message.
+  #
+  def self.authenticate(login, password)
+    return nil if login.blank? || password.blank?
+    u = find_by_login(login.downcase) # need to get the salt
+    u && u.authenticated?(password) ? u : nil
   end
 
-  def self.encrypted_password(password, salt)
-    string_to_hash = password + "U%RDvMaRgARiNfd76" + salt
-    Digest::SHA1.hexdigest(string_to_hash)
+  def login=(value)
+    write_attribute :login, (value ? value.downcase : nil)
+  end
+
+  def email=(value)
+    write_attribute :email, (value ? value.downcase : nil)
   end
   
-  def create_new_salt
-    self.salt = self.object_id.to_s + rand.to_s
-  end
+  def is_admin?
+    admin
+  end 
+  protected
+    
+
+
 end

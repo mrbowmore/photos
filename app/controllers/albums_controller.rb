@@ -14,7 +14,7 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album = Album.new(params[:album])
+    @album = Album.new(params[:album].merge(:user => current_user))
   
     if @album.save
       flash[:notice] = "Album was successfully created!"
@@ -29,7 +29,7 @@ class AlbumsController < ApplicationController
     
     if @album.update_attributes(params[:album])
       flash[:notice] = "Album was successfully updated!"
-      redirest_to albums_url
+      redirect_to albums_url
     else
       render :action => "edit"
     end

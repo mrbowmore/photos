@@ -1,6 +1,11 @@
 class Photo < ActiveRecord::Base
   belongs_to :album
-  belongs_to :user
+  delegate :user, :to => :album
+  
+  def has_access?(user)
+    return false if user.nil?
+    self.user == user || user.is_admin?
+  end
   
   has_attachment :content_type => :image,
                  :storage => :file_system,

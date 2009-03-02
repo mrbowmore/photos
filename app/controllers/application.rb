@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
 #  before_filter :login_required
+  include AuthenticatedSystem
   session :session_key => '_photastic_session_id'
   
   helper :all # include all helpers, all the time

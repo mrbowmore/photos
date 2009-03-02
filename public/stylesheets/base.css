@@ -15,6 +15,10 @@ hr {
   background: #f0f0ee;
   color: #f0f0ee;
 }
+
+img{
+  border: none;
+}
  
 #header {
   background: #ff7900;
@@ -190,9 +194,14 @@ hr {
 .flash-messages p {
   margin:8px;
 }
-.flash-messages.error {
-  border: 1px solid #fbb;
-  background-color: #fdd;
+.flash_error {
+  border: 1px solid #afa;
+  background-color: #9f9;
+  padding: 5px;
+  width: 800px;
+  margin-left: 100px;
+  
+  
 }
 .flash-messages.warning {
   border: 1px solid #fffaaa;
@@ -264,8 +273,7 @@ ul.list li .item .avatar {
 }
 
 .thumbnail {
-background-color:#222222;
-border:1px solid #2a2a2a;
+background-color:#fff;
 flat:left;
 margin-bottom:10px;
 margin-right:10px;
@@ -276,5 +284,5 @@ padding:3px 3px 8px;
 border-top:4px solid #3d3d33;
 overflow:auto;
 padding:1.4em 0pt 3.2em;
-with:100%;
+width:100%;
 }

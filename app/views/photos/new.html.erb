@@ -1,8 +1,5 @@
-<% form_for(@photo, :html => { :multipart => true }) do |f| -%>
-    <p>
-      <%= f.label :album_id %>
-      <%= select_tag :album_id, options_for_select(Album.all.collect {|a| [a.title, a.id] }) %>
-    </p>
+<% form_for(@photo, :url => album_photos_path(@photo.album), :html => { :multipart => true }) do |f| -%>
+ 
     <p>
       <label for="photo">Upload a photo:</label>
       <%= f.file_field :uploaded_data %>
