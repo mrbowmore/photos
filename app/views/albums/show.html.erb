@@ -9,5 +9,5 @@
 <% end %>
 </table>
  
-<p><%= link_to "Add Photo", new_album_photo_path(@album) %></p>
+<p><%= link_to "Add Photo", new_album_photo_path(@album) if photo.has_access?(current_user) %></p>
   

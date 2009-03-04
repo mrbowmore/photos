@@ -1,8 +1,8 @@
-<header>Listing albums</header>
+<h2>Listing albums</h2>
   
 <table>
     <tr>
-      <th>Title</th>
+      <h4>Title</h4>
         <th></th>
        <th></th>
     </tr>
@@ -11,7 +11,7 @@
 
     <tr>
       <td><%= link_to "#{album.title}", album %></td>
-      <td><%= link_to "Destroy", album, :confirm => "Are you sure?", :method => :delete if album.has_access?(current_user)%></td>
+      <td><%= link_to "Destroy", album, :confirm => "Are you sure?", :method => :delete if album.has_access?(current_user) %></td>
     </tr>
     
 <% end %>
@@ -20,4 +20,4 @@
 
 <br />
 
-<%= link_to "New album", new_album_path %>
+<%= link_to "New album", new_album_path if album.has_access?(current_user) %>

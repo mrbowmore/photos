@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
+  
+  has_many :albums
 
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
@@ -47,11 +49,18 @@ class User < ActiveRecord::Base
     write_attribute :email, (value ? value.downcase : nil)
   end
   
+  def has_access?(user)
+    return false if user.nil?
+    self == user || user.is_admin?
+  end  
+  
   def is_admin?
     admin
   end 
+
+
   protected
-    
+
 
 
 end

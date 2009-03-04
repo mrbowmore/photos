@@ -1,9 +1,11 @@
+
+
 <% if logged_in? -%>
-  Logged in as <%= current_user.login %>
-  (<%= link_to "Log out", logout_path, { :title => "Log out" } %>)
+  Logged in as: <strong><%= current_user.login %></strong> |
+  <%= link_to "Log out", logout_path, { :title => "Log out" } %>
 <% else -%>
   
-  <%= link_to_login_with_IP 'Not logged in', :style => 'border: none;' %>
-  <%= link_to "Log in",  login_path,  { :title => "Log in" } %> /
+  
+  <center><%= link_to "Log in",  login_path,  { :title => "Log in" } %> |
   <%= link_to "Sign up", signup_path, { :title => "Create an account" } %>
-<% end -%>
+<% end -%></center>
