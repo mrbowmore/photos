@@ -50,7 +50,8 @@ body{
 
 #content {
   float: left;
-  width: 780px;
+  width: 800px;
+  height: 600px;
   margin: 0px 100px;
   padding: 10px;
   background-color: #fff;

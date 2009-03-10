@@ -1,8 +1,9 @@
 class Album < ActiveRecord::Base
-  has_many :photos
+  has_many :photos, :order => "position"
   belongs_to :user
   
   validates_presence_of :user
+  attr_accessible :title, :user_id
   
   def has_access?(user)
     return false if user.nil?

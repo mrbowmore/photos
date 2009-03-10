@@ -1,7 +1,21 @@
+<div style="float: right;">
+  <%= link_to image_tag("/images/back_arrow.png", :border => 0), album_path(@photo.album) %>
+</div>
+
 <div>
-<header><%= @photo.filename %></header><br />
-  <%= image_tag @photo.public_filename %><br />
-  <tr>
-    <td><%= link_to "Add Photo", album_photos_path(@photo.album) %></td>
-  </tr>
+<h2><%= @photo.filename %></h2><br />
+  <div style="width: 350px; height: 350px;">
+    <%= image_tag @photo.public_filename %>
+  </div><br />
+  
+  <div style="float: left;">
+    <%= link_to image_tag("/images/left_arrow.png", :border => 0), @photo.higher_item %>
+  </div>
+  
+    <div style="width: 300px; height:10px; float: left;"> </div>
+    
+    <div style="float: left;">
+      <%= link_to image_tag("/images/right_arrow.png", :border => 0), @photo.lower_item %>
+    </div>
+  
 </div>

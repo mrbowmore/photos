@@ -1,3 +1,7 @@
+<div style="float: right;">
+  <%= link_to image_tag("/images/add.png", :border => 0), new_album_path if current_user %>
+</div>
+
 <h2>Listing albums</h2>
   
 <table>
@@ -20,4 +24,3 @@
 
 <br />
 
-<%= link_to "New album", new_album_path if album.has_access?(current_user) %>
