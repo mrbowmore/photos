@@ -3,6 +3,8 @@ class Photo < ActiveRecord::Base
   acts_as_list :scope => :album
   delegate :user, :to => :album
   
+  attr_accessible :title, :user_id, :user, :filename
+  
   def has_access?(user)
     return false if user.nil?
     self.user == user || user.is_admin?

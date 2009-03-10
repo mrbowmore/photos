@@ -39,7 +39,7 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     @album.destroy
     
-    redirect_to albums_url
+    redirect_to albums_path
   end
   
 end

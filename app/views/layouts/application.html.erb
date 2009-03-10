@@ -1,42 +1,38 @@
-<!DOCTYPE html PUBLIC "-//WC3//DTD XHTML 1.0 STRICT//EN"
-  "http://www.w3.org/1999/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhml" xml:lang="en" lang="en-US">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-  <title><%= @page_title || "Welcome to Photastic!" %></title>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-  <%= stylesheet_link_tag "base" %>
-  <%= stylesheet_link_tag "test" %>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Photastic! Upload you Photos/images here!</title>
+	<%= stylesheet_link_tag 'web_app_theme', "themes/default/style" %>
 </head>
-
-  <body>
-
-
-
-    <div class="container">
-    <div class="head">
-    <div class="mattblacktabs">
-    <ul>
-    <li><%# link_to "/photos", photos_path %></li>
-    <li><%= link_to "/albums", albums_path %></li>
-    <li><%= link_to "/users", users_path %></li>
-    </ul>
-    </div>
-    <div class="userbar">
-    <%= render(:partial => "/users/user_bar" ) %>
-    </div>
-    </div>
-    <div style="clear:both"></div>  
-      <% flash.each do |key, value| %>
-        <div id="flash" class="flash_<%= key %>" >
-          <span class="message"><%= value %></span>
-        </div>
-      <% end -%>
-        <div id="content">
-        <%= yield :layout %>
+<body>
+  <div id="container">
+    <div id="header">
+      <h1><a href="/">/ Photastic</a></h1>
+      <div id="user-navigation">
+          <%= render(:partial => "/users/user_bar" ) %>
+        <div class="clear"></div>
+      </div>      
+      <div id="main-navigation">
+        <ul></ul>
+        <div class="clear"></div>
+      </div>
+    </div>    
+    <div id="wrapper">
+      <div id="main">
+        <%= yield %>
+        <div class="clear"></div> 
+        <div id="footer">
+          <div class="block">
+            <p> 2009 Photastic</p>
+          </div>      
         </div>
       </div>
-    </div>
-  </body>
-<html>
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div>
+      <div class="clear"></div>      
+    </div>    
+  </div>
+</body>
+</html>

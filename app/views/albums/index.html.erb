@@ -1,26 +1,50 @@
-<div style="float: right;">
-  <%= link_to image_tag("/images/add.png", :border => 0), new_album_path if current_user %>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first active"><%= link_to '/ Albums', albums_path %></li>
+      <li><%= link_to "/ New album", new_album_path if current_user %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">          
+    <h2 class="title">All Albums</h2>
+    <div class="inner">
+      <% form_tag "", :class => :form do -%>
+        <table class="table">
+          <tr>             
+            <th class="first"></th>
+            <th>Title</th>
+            <th>Created at</th>
+            <th class="last">&nbsp;</th>
+          </tr>
+          <% @albums.each do |album| -%>
+          <tr>
+            <td>
+              <%= %>
+            </td>
+            <td>
+              <%= link_to album.title, album_path(album) %>
+            </td>
+            <td>
+              <%= album.created_at %>
+            </td>
+            <td class="last">
+              <%= link_to 'show', album_path(album) %> |
+              <%= link_to 'edit', edit_album_path(album) %> |
+              <%= link_to 'destroy', album_path(album), :method => :delete, :confirm => 'Are you sure?' %>
+            </td>
+          </tr>          
+          <% end -%>
+        </table>
+        <div class="actions-bar">
+          <div class="actions">
+          </div>
+          
+          <div class="clear"></div>
+        </div>
+      <% end -%>
+    </div>
+  </div>
 </div>
 
-<h2>Listing albums</h2>
-  
-<table>
-    <tr>
-      <h4>Title</h4>
-        <th></th>
-       <th></th>
-    </tr>
-      
-<% for album in @albums %>
-
-    <tr>
-      <td><%= link_to "#{album.title}", album %></td>
-      <td><%= link_to "Destroy", album, :confirm => "Are you sure?", :method => :delete if album.has_access?(current_user) %></td>
-    </tr>
-    
-<% end %>
-    
-</table>
-
-<br />
-
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

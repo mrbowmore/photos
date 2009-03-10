@@ -7,7 +7,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.column :title, :string
       t.column :thumbnail, :string
       t.column :size, :integer
-      t.column :with, :integer
+      t.column :width, :integer
       t.column :height, :integer
       
       t.column :album_id, :integer

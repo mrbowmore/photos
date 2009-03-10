@@ -1,0 +1,18 @@
+<div style="float: right;">
+  <%= link_to "Add Photo", new_album_photo_path(@album) if current_user %>
+</div>
+  
+  <h2><%= @album.title %></h2>
+
+<table>
+<% for photo in @album.photos %>
+  <tr>
+    <td><%= link_to image_tag(photo.public_filename(:thumb)), photo %></td><br />
+    <td><%= link_to "Delete image", photo, :confirm => "Are you sure?", :method => :delete if photo.has_access?(current_user)%></td>
+  </tr>
+  
+<% end %>
+</table>
+ 
+
+  

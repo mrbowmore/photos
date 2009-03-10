@@ -1,11 +1,15 @@
 
-
+<div style="text-colour: black;">
 <% if logged_in? -%>
-  Logged in as: <strong><%= current_user.login %></strong> |
-  <%= link_to "Log out", logout_path, { :title => "Log out" } %>
+  <ul>
+    <li>Logged in as: <strong><%= current_user.login %></strong></li>
+  <li><%= link_to "Log out", logout_path, { :title => "Log out" } %></li>
+  </ul>
 <% else -%>
   
-  
-  <center><%= link_to "Log in",  login_path,  { :title => "Log in" } %> |
-  <%= link_to "Sign up", signup_path, { :title => "Create an account" } %>
-<% end -%></center>
+  <ul>
+  <li><%= link_to "Log in",  login_path,  { :title => "Log in" } %></li>
+  <li><%= link_to "Sign up", signup_path, { :title => "Create an account" } %></li>
+  </ul>
+<% end -%>
+</div>
