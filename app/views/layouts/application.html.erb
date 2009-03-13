@@ -8,31 +8,39 @@
 <body>
   <div id="container">
     <div id="header">
-      <h1><a href="/">/ Photastic</a></h1>
+      
+      <a href="index"><%= link_to image_tag("/images/loggan.png", :border => 0), albums_path %></a>
       <div id="user-navigation">
           <%= render(:partial => "/users/user_bar" ) %>
         <div class="clear"></div>
-      </div>      
+      </div>
       <div id="main-navigation">
         <ul></ul>
         <div class="clear"></div>
       </div>
-    </div>    
+    </div>
     <div id="wrapper">
       <div id="main">
+        <% if flash[:notice] -%>
+          <div id="notice"><%= flash[:notice] %></div> 
+        <% end -%>
+        <% if flash[:error] -%>
+          <div id="error"><%= flash[:error] %></div> 
+        <% end -%>
+
         <%= yield %>
         <div class="clear"></div> 
         <div id="footer">
           <div class="block">
             <p> 2009 Photastic</p>
-          </div>      
+          </div>
         </div>
       </div>
       <div id="sidebar">
         <%= yield :sidebar %>
       </div>
-      <div class="clear"></div>      
-    </div>    
+      <div class="clear"></div>
+    </div>
   </div>
 </body>
 </html>

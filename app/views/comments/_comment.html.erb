@@ -1,0 +1,12 @@
+<div class="comment_row <%= cycle("red", "white") %>">
+  <div style="float: left;">
+      <strong><%= comment.user.login %></strong>
+      <span style="font-size: small;"><%= "(" +
+        link_to("edit", edit_comment_path(comment)) +
+        " | " +
+        link_to("delete", comment_path(comment), :method => :delete) +
+        ")" if comment.user.eql? current_user %></span><br/><br/>
+      <%= simple_format(comment.body) %>
+    </div>
+    <div style="clear:both;"></div>
+  </div>

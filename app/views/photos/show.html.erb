@@ -11,33 +11,45 @@
   </div>          
   <div class="content">
     <div class="inner">
-      
+      <div class="left">
         <p>
           <b>filename:</b>
           <%= @photo.filename %>
         </p>
 
-        <p>
-          <b>title:</b>
-          <%= @photo.title %>
-        </p>
+          <p>
+            <b>title:</b>
+            <%= @photo.title %>
+          </p>
 
-      <div style="width: 350px; height: 350px;">
-        <%= image_tag @photo.public_filename %>
-      </div><br />
+            <div class="pic">
+              <%= image_tag @photo.public_filename %>
+            </div><br />
 
-      <div style="float: left;">
-         <%= link_to "Previous", @photo.higher_item %>
+              <div style="float: left;">
+                <%= link_to "Previous", @photo.higher_item %>
+              </div>
+
+                <div style="width: 300px; height:10px; float: left;">
+                </div>
+
+                  <div style="float: left;">
+                    <%= link_to "Next", @photo.lower_item %>
+                  </div>
       </div>
-
-      <div style="width: 300px; height:10px; float: left;">
+                
+      <div class="right">
+        <div style="margin: 30px; float: right;">
+        <% @photo.comments.each do |comment| %>
+          <%= render :partial => "comments/comment", :locals => { :comment => comment } %>
+        <% end %>
+          <%= render :partial => "comments/form", :locals => { :owner => @photo } %>
+        </div>
       </div>
-
-      <div style="float: left;">
-          <%= link_to "Next", @photo.lower_item %>
-      </div>
-    </div>        
+      <div class="clear"></div>
+    </div>
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+
+<% content_for :sidebar, render(:partial => 'albums/sidebar') -%>

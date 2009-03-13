@@ -3,6 +3,7 @@ class Album < ActiveRecord::Base
   belongs_to :user
   
   validates_presence_of :user
+  validates_uniqueness_of :title, :id
   attr_accessible :title, :user_id, :user
   
   def has_access?(user)

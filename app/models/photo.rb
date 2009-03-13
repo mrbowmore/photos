@@ -1,9 +1,10 @@
 class Photo < ActiveRecord::Base
   belongs_to :album
+  has_many :comments, :as => :owner
   acts_as_list :scope => :album
   delegate :user, :to => :album
   
-  attr_accessible :title, :user_id, :user, :filename
+  attr_accessible :title, :user_id, :user, :filename, :comments
   
   def has_access?(user)
     return false if user.nil?
