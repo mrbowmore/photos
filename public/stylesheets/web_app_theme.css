@@ -335,10 +335,52 @@ ul.list li .item .avatar {
 
 /* comments */
 
-.comment_row {
-  padding: 10px 2px;
+.comment_form {
+  padding: 3px;
+  width: 400px;
+  overflow: hidden;
+  margin-top: 6px;
+  float: left;
+  }
+
+.comment_body {
+  padding-left: 3px;
+  padding-right: 3px;
+  width: 414px;
+  overflow: hidden;
+  float: left;
 }
- 
+
+.comment_header {
+  padding-left: 4px;
+  height: 13px;
+  width: 416px;
+  overflow: hidden;
+  border-top: solid;
+  border-color: black;
+  border-width: 1px;
+  float: left;
+}
+
+.comment_row {
+  width: 420px;
+  overflow: hidden;
+  float: left;
+}
+
+.user{
+  width: 400px;
+  height: 13px;
+  float: left;
+}
+
+.collapse_expand{
+  cursor: pointer;
+  margin-top: 1px;
+  float: left;
+  width: 13px;
+}
+
 .red{
   background-color: #cecece;
 }
@@ -356,9 +398,10 @@ ul.list li .item .avatar {
 }
 
 .right{
-  width: 400px;
+  width: 500px;
   margin: 5px;
   float: right;
+  overflow: auto;
 }
 
 .pic{

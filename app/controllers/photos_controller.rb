@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
       flash[:notice] = "Photo was successfully saved!"
       redirect_to @photo
     else
-      flash[:notice] = "File size must be between 0->1024 KB"
+      flash[:notice] = "File size must be 0-256 KB"
       render :action => :new
     end
   end

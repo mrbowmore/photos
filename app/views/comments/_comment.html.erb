@@ -1,12 +1,21 @@
-<div class="comment_row <%= cycle("red", "white") %>">
-  <div style="float: left;">
-      <strong><%= comment.user.login %></strong>
-      <span style="font-size: small;"><%= "(" +
+<div class="comment_row <%= cycle("red", "white") -%>">   
+  <div class="comment_header">
+  <div class="user">
+  <strong><%= comment.user.login %></strong>  said:
+   <span style="font-size: small;"><%= "(" +
         link_to("edit", edit_comment_path(comment)) +
         " | " +
         link_to("delete", comment_path(comment), :method => :delete) +
-        ")" if comment.user.eql? current_user %></span><br/><br/>
-      <%= simple_format(comment.body) %>
-    </div>
-    <div style="clear:both;"></div>
+        ")" if comment.has_access?(current_user)%></span>
+        </div>
+        <div class="collapse_expand">
+          <div title="contract" onclick="Effect.BlindUp('comment<%= comment.id -%>'), { duration: 0.5 }; this.hide(); this.nextSiblings().first().show(); return false;"><%= image_tag("/images/minus.png")%></div>
+          <div style="display: none;"title="expand" onclick="Effect.BlindDown('comment<%= comment.id -%>'), { duration: 0.5 }; this.hide(); this.previousSiblings().first().show(); return false;"><%= image_tag("/images/plus.png")%></div>
+        </div>
+        <div style="clear:both;"></div>
   </div>
+  <div class="comment_body" id="comment<%= comment.id -%>">
+    <%= simple_format(comment.body) %>
+  </div>
+  <div style="clear:both;"></div>
+</div>

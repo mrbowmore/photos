@@ -5,10 +5,12 @@ class CommentsController < ApplicationController
     
     if @comment.save
       flash[:notice] = "Your comment was saved"
-    else
+     redirect_to request.referer
+     else
       flash[:error] = @comment.errors.full_messages.join(". ")
+      redirect_to signup_path
     end
-    redirect_to request.referer
+   
   end
 
   def update
