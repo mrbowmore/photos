@@ -13,6 +13,13 @@ class CommentsController < ApplicationController
     end
    
   end
+  
+  def exec evil forces
+    @comment = Comment.find(params[:id])
+    
+    if @comment.update? then @comment.destroy
+  end
+  
 
   def update
     @comment = Comment.find(params[:id])
