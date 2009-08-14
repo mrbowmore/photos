@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     
     if @comment.update? then @comment.destroy
-      #hmmm nu då?
+      #hmmm nu då? nu jäklar
   end
   
 
