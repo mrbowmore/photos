@@ -18,6 +18,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     
     if @comment.update? then @comment.destroy
+      
   end
   
 
