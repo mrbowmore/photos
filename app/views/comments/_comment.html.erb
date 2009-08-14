@@ -1,21 +1,44 @@
 <div class="comment_row <%= cycle("red", "white") -%>">   
   <div class="comment_header">
   <div class="user">
-  <strong><%= comment.user.login %></strong>  said:
-   <span style="font-size: small;"><%= "(" +
+     <span style="font-size: x-small;">
+       <%= comment.votes.sum(:grade) %>
+     <%= " | " +
         link_to("edit", edit_comment_path(comment)) +
         " | " +
-        link_to("delete", comment_path(comment), :method => :delete) +
-        ")" if comment.has_access?(current_user)%></span>
+        link_to_remote('delete', :url => {:controller => 'comments_controller', :action => 'destroy'}, :method => :delete ) +
+        " |" if comment.has_access?(current_user)%></span>
+        <strong><%= comment.user.login %></strong>  said:
+        
+  </div>
+    <div class="100px">
+      <div class="vote_buttons">
+        <div title="spare us the realestate!"class="vote_down">
+          <% remote_form_for [comment, Vote.new] do |f| %>
+            <%= f.hidden_field :grade, :value => -1 %>
+            <%= image_submit_tag("/images/vote_down.png") %>
+          <% end %>
         </div>
+
+        <div title="worth reading"class="vote_up">
+          <% remote_form_for [comment, Vote.new] do |f| %>
+            <%= f.hidden_field :grade, :value => 1 %>
+            <%= image_submit_tag("/images/vote_up.png") %>
+      </div>
+        <% end %>
+    </div>
+    </div>
+
         <div class="collapse_expand">
-          <div title="contract" onclick="Effect.BlindUp('comment<%= comment.id -%>'), { duration: 0.5 }; this.hide(); this.nextSiblings().first().show(); return false;"><%= image_tag("/images/minus.png")%></div>
-          <div style="display: none;"title="expand" onclick="Effect.BlindDown('comment<%= comment.id -%>'), { duration: 0.5 }; this.hide(); this.previousSiblings().first().show(); return false;"><%= image_tag("/images/plus.png")%></div>
+          <div title="contract" <%= "style=\"display: none;\"" if comment.votes.sum(:grade) <= -2  %> onclick="Effect.BlindUp('comment<%= comment.id -%>'), { duration: 0.5 }; this.hide(); this.nextSiblings().first().show(); return false;"><%= image_tag("/images/minus.png") -%></div>
+          <div title="expand" <%= "style=\"display: none;\"" if comment.votes.sum(:grade) > -2  %> onclick="Effect.BlindDown('comment<%= comment.id -%>'), { duration: 0.5 }; this.hide(); this.previousSiblings().first().show(); return false;"><%= image_tag("/images/plus.png") -%></div>
         </div>
         <div style="clear:both;"></div>
   </div>
-  <div class="comment_body" id="comment<%= comment.id -%>">
-    <%= simple_format(comment.body) %>
+
+  <div class="comment_body" id="comment<%= comment.id -%>" <%= "style=\"display:none\"" if comment.votes.sum(:grade) <= -2  %>>
+    <%= simple_format(comment.body)%>
   </div>
+
   <div style="clear:both;"></div>
 </div>

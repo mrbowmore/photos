@@ -2,11 +2,12 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
-    
-    if @comment.save
-      flash[:notice] = "Your comment was saved"
-     redirect_to request.referer
-     else
+      if @comment.save
+        respond_to do |format|
+          format.html { redirect_to request.referer }
+          format.js
+        end
+      else
       flash[:error] = @comment.errors.full_messages.join(". ")
       redirect_to signup_path
     end
@@ -30,7 +31,11 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to request.referer
+    if @comment.destroy
+      respond_to do |format|
+        format.js
+        format.html { redirect_to request.referer }
+      end
+    end
   end
 end

@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   
   has_many :albums
+  has_many :votes, :as => :voteable
+  has_many :comments
 
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40

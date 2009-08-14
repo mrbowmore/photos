@@ -1,5 +1,5 @@
 <div class="comment_form">
-<% form_for Comment.new do |f| -%>
+<% remote_form_for Comment.new, :html => { :id => 'comment_form' } do |f| -%>
   <%= f.hidden_field :owner_id, :value => owner.id %>
   <%= f.hidden_field :owner_type, :value => owner.class %>
   <%= f.text_area :body, :size => "49x9", :class => 'text_area' %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090311122344) do
+ActiveRecord::Schema.define(:version => 20090316160341) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -67,5 +67,14 @@ ActiveRecord::Schema.define(:version => 20090311122344) do
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "voteable_type"
+    t.integer  "voteable_id"
+    t.integer  "grade"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

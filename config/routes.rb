@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :users
   map.resources :sessions
-  map.resources :comments
+  map.resources :comments, :has_many => :votes
   
   
   map.signup  '/signup', :controller => 'users',   :action => 'new'

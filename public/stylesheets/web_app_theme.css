@@ -369,10 +369,11 @@ ul.list li .item .avatar {
 }
 
 .user{
-  width: 400px;
+  width: 360px;
   height: 13px;
   float: left;
 }
+
 
 .collapse_expand{
   cursor: pointer;
@@ -380,6 +381,33 @@ ul.list li .item .avatar {
   float: left;
   width: 13px;
 }
+
+.vote_buttons{
+  cursor: pointer;
+  margin-top: 1px;
+  float: left;
+  width: 32px;
+  height: 13px;
+  
+}
+
+.100px{
+  width: 100px;
+  height: 13px;
+  float: left;
+}
+
+.vote_down{
+  height: 13px;
+  width: 13px;
+  float: left;
+}
+
+.vote_up{
+    height: 13px;
+    width: 13px;
+    float: left;
+  }
 
 .red{
   background-color: #cecece;

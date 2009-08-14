@@ -4,7 +4,7 @@ class Album < ActiveRecord::Base
   
   validates_presence_of :user
   validates_uniqueness_of :title
-  attr_accessible :title, :user_id, :user
+  #attr_accessible :title, :user_id, :user
   
   def has_access?(user)
     return false if user.nil?

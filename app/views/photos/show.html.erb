@@ -8,7 +8,7 @@
       
     </ul>
     <div class="clear"></div>
-  </div>          
+  </div>
   <div class="content">
     <div class="inner">
       <div class="left">
@@ -39,11 +39,8 @@
       </div>
                 
       <div class="right">
-        <div style="margin: 30px; float: right;">
-        <% @photo.comments.each do |comment| %>
-          <%= render :partial => "comments/comment", :locals => { :comment => comment } %>
-        <% end %>
-          <%= render :partial => "comments/form", :locals => { :owner => @photo } %>
+        <div id="comments" style="margin: 30px; float: right;">
+          <%= render :partial => "comments/comments" %>
         </div>
       </div>
       <div class="clear"></div>

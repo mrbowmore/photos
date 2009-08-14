@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :owner, :polymorphic => true
 
-  has_many :votes, :as => :owner
+  has_many :votes, :as => :voteable
 
   validates_presence_of :user, :owner, :body
 
@@ -10,5 +10,4 @@ class Comment < ActiveRecord::Base
     return false if user.nil?
     self.user == user || user.is_admin?
   end
-
 end
